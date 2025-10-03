@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+header {
+    background: #0078D7;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px; 
+}
+
+/* ===== ESTILO UNIFICADO PARA BOTONES DE NAVEGACIÓN ===== */
+.btn-admin, .btn-home {
+    display: inline-block;
+    background: #83a1da;  /* Un color naranja consistente */
+    color: white;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn-admin:hover, .btn-home:hover {
+    background: #b9c0e9; /* Un naranja más oscuro al pasar el mouse */
+}
+
+section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+}
+
+section h2 {
+    color: #0078D7;
+    margin-bottom: 10px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #555;
+}
+
+footer p {
+    font-size: 0.9em;
+}
