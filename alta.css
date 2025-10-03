@@ -1,4 +1,4 @@
-* {/*PRUEBA*/
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -13,7 +13,7 @@ body {
 }
 
 header {
-    background: #0078D7; /* Color principal de tu index */
+    background: #0078D7; 
     color: white;
     padding: 20px;
     text-align: center;
@@ -33,7 +33,7 @@ nav {
 /* ===== ESTILO UNIFICADO PARA BOTONES DE NAVEGACIÓN ===== */
 .btn-admin, .btn-home {
     display: inline-block;
-    background: #83a1da;  /* Color de botón de tu index */
+    background: #83a1da;  
     color: white;
     padding: 10px 18px;
     text-decoration: none;
@@ -43,7 +43,7 @@ nav {
 }
 
 .btn-admin:hover, .btn-home:hover {
-    background: #b9c0e9; /* Color de hover de tu index */
+    background: #b9c0e9; 
 }
 
 /* Formularios */
@@ -62,7 +62,7 @@ form input, form textarea {
 }
 
 form button {
-    background: #83a1da; /* Color de botón de tu index */
+    background: #83a1da;
     color: white;
     padding: 10px;
     border: none;
@@ -73,7 +73,7 @@ form button {
 }
 
 form button:hover {
-    background: #b9c0e9; /* Color de hover de tu index */
+    background: #b9c0e9; 
 }
 
 section {
@@ -85,7 +85,7 @@ section {
 }
 
 section h2 {
-    color: #0078D7; /* Color principal de tu index */
+    color: #0078D7; 
     margin-bottom: 10px;
 }
 
