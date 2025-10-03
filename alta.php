@@ -12,7 +12,7 @@ $resultadoClientes = $conn->query("SELECT * FROM clientes");
 <head>
     <meta charset="UTF-8">
     <title>Panel de Altas - ShoPC</title>
-    <link rel="stylesheet" href="alta.css">
+    <link rel="stylesheet" href="https://d4v1dcloud.github.io/tienda-shopc/alta.css">
 </head>
 <body>
     <header>
