@@ -157,10 +157,6 @@ footer {
     border: 1px solid #f5c6cb;
 }
 
-/* ==================================================== */
-/* AÑADIDO: Efecto de foco y hover amarillos */
-/* ==================================================== */
-
 /* Efecto para los campos de formulario al hacer clic */
 form input:focus, form textarea:focus {
     background-color: #fffacd;
