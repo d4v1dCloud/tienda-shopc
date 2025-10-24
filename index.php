@@ -1,12 +1,9 @@
-<?php
-include 'conexion.php'; // conexión a la base de datos
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Mi Tienda de Computadoras</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://d4v1dcloud.github.io/tienda-shopc/estilos.css">
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -64,6 +61,6 @@ include 'conexion.php'; // conexión a la base de datos
 
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=1.3"></script>
 </body>
 </html>
