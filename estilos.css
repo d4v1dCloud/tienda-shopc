@@ -72,9 +72,7 @@ footer p {
     font-size: 0.9em;
 }
 
-/* ======================================= */
 /* AÑADIDO: Efecto hover amarillo */
-/* ======================================= */
 section:hover {
     background-color: #fffacd; /* Un amarillo pálido */
 }

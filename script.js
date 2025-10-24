@@ -1,21 +1,8 @@
-// Espera a que todo el documento (DOM) esté cargado
 $(document).ready(function() {
 
-    // --- PASO 1: Eventos y Elementos Dinámicos ---
-
-    // Efecto simple de "fade in" para las secciones en index.php
-    // y para las tarjetas de producto/cliente en alta.php
-    // Esto cumple con "agregar... elementos dinámicos"
-    $('section').fadeIn(1000);
-    $('.card').fadeIn(1200);
-
-
-    // --- PASO 2: Validación del Lado del Cliente ---
-
-    // Usamos la librería jQuery Validate (una "librería conocida")
-    // para validar los formularios en alta.php
-
-    // Validación para el formulario de Clientes
+   
+    $('section').fadeIn(2000);
+    $('.card').fadeIn(2000);
     $("#formCliente").validate({
         rules: {
             nombre: {
