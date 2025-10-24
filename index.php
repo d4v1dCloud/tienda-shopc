@@ -7,6 +7,9 @@ include 'conexion.php'; // conexión a la base de datos
     <meta charset="UTF-8">
     <title>Mi Tienda de Computadoras</title>
     <link rel="stylesheet" href="estilos.css">
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 </head>
 <body>
     <header>
@@ -60,5 +63,7 @@ include 'conexion.php'; // conexión a la base de datos
         </p>
 
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

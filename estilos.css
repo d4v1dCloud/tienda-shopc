@@ -47,6 +47,7 @@ header h1 {
 }
 
 section {
+    display: none; /* AÑADIDO: Oculta para el efecto fadeIn (Paso 1) */
     background: white;
     padding: 20px;
     border-radius: 8px;

@@ -30,7 +30,7 @@ nav {
     margin-top: 10px;
 }
 
-/*  ESTILO UNIFICADO PARA BOTONES DE NAVEGACIÓN  */
+/* ESTILO UNIFICADO PARA BOTONES DE NAVEGACIÓN  */
 .btn-admin, .btn-home {
     display: inline-block;
     background: #83a1da;  
@@ -76,7 +76,23 @@ form button:hover {
     background: #b9c0e9; 
 }
 
+/* =================================================== */
+/* AÑADIDO: Estilo para errores de validación (Paso 2) */
+/* =================================================== */
+label.error {
+    color: #b90000;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-top: -5px; /* Ajusta posición */
+}
+
+input.error, textarea.error {
+    border: 1px solid #b90000; /* Borde rojo en input inválido */
+}
+
+
 section {
+    display: none; /* Oculta para el efecto fadeIn (Paso 1) */
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -90,6 +106,7 @@ section h2 {
 }
 
 .card {
+    display: none; /* Oculta para el efecto fadeIn (Paso 1) */
     border: 1px solid #ddd;
     padding: 15px;
     border-radius: 8px;
@@ -116,4 +133,26 @@ footer {
     margin-top: 20px;
     color: #555;
     font-size: 0.9em;
+}
+
+/* ======================================= */
+/* AÑADIDO: Estilos para alertas de feedback */
+/* ======================================= */
+.alerta {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1em;
+}
+.alerta.exito {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.alerta.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }

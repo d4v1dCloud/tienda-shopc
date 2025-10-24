@@ -12,8 +12,12 @@ $resultadoClientes = $conn->query("SELECT * FROM clientes");
 <head>
     <meta charset="UTF-8">
     <title>Panel de Altas - ShoPC</title>
-    <link rel="stylesheet" href="https://d4v1dcloud.github.io/tienda-shopc/alta.css">
+    <link rel="stylesheet" href="alta.css?v=1.2"> 
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 </head>
+
 <body>
     <header>
         <h1>Panel de Altas</h1>
@@ -22,35 +26,52 @@ $resultadoClientes = $conn->query("SELECT * FROM clientes");
         </nav>
     </header>
 
+    <?php
+    if (isset($_GET['status'])) {
+        if ($_GET['status'] == 'ok_cliente') {
+            echo "<div class='alerta exito'>Cliente guardado correctamente.</div>";
+        }
+        if ($_GET['status'] == 'err_cliente') {
+            echo "<div class='alerta error'>Error: No se pudo guardar el cliente.</div>";
+        }
+        if ($_GET['status'] == 'ok_prod') {
+            echo "<div class='alerta exito'>Producto guardado correctamente.</div>";
+        }
+        if ($_GET['status'] == 'err_prod') {
+            echo "<div class='alerta error'>Error: No se pudo guardar el producto.</div>";
+        }
+    }
+    ?>
+
     <section>
         <h2>Alta de Clientes</h2>
-        <form>
+        <form id="formCliente" method="POST" action="procesar_alta.php" novalidate>
             <label>Nombre:</label>
-            <input type="text" placeholder="Nombre completo" required>
+            <input type="text" name="nombre" placeholder="Nombre completo">
             
             <label>Email:</label>
-            <input type="email" placeholder="ejemplo@correo.com" required>
+            <input type="email" name="email" placeholder="ejemplo@correo.com">
             
             <label>Teléfono:</label>
-            <input type="tel" placeholder="1234567890" required>
+            <input type="tel" name="telefono" placeholder="1234567890">
             
-            <button type="submit">Guardar Cliente</button>
+            <button type="submit" name="guardar_cliente">Guardar Cliente</button>
         </form>
     </section>
 
     <section>
         <h2>Alta de Productos</h2>
-        <form>
+         <form id="formProducto" method="POST" action="procesar_alta.php" novalidate>
             <label>Nombre:</label>
-            <input type="text" placeholder="Nombre del producto" required>
+            <input type="text" name="nombre_prod" placeholder="Nombre del producto">
             
             <label>Descripción:</label>
-            <textarea placeholder="Descripción del producto"></textarea>
+            <textarea name="descripcion" placeholder="Descripción del producto"></textarea>
             
             <label>Precio:</label>
-            <input type="number" step="0.01" placeholder="0.00" required>
+            <input type="number" step="0.01" name="precio" placeholder="0.00">
             
-            <button type="submit">Guardar Producto</button>
+            <button type="submit" name="guardar_producto">Guardar Producto</button>
         </form>
     </section>
 
@@ -89,7 +110,7 @@ $resultadoClientes = $conn->query("SELECT * FROM clientes");
         $conn->close();
         ?>
     </section>
-
+    
     <footer>
         <p>© 2025 ShoPC - Todos los derechos reservados</p>
         <p>
@@ -107,5 +128,7 @@ $resultadoClientes = $conn->query("SELECT * FROM clientes");
             </a>
         </p>
     </footer>
+
+    <script src="script.js?v=1.2"></script>
 </body>
 </html>
