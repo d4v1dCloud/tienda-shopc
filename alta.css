@@ -30,7 +30,7 @@ nav {
     margin-top: 10px;
 }
 
-/* ===== ESTILO UNIFICADO PARA BOTONES DE NAVEGACIÓN ===== */
+/*  ESTILO UNIFICADO PARA BOTONES DE NAVEGACIÓN  */
 .btn-admin, .btn-home {
     display: inline-block;
     background: #83a1da;  
@@ -108,7 +108,7 @@ section h2 {
 
 .precio {
     font-weight: bold;
-    color: #0078D7; /* Color principal para resaltar */
+    color: #0078D7;
 }
 
 footer {
