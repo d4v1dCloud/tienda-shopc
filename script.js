@@ -1,8 +1,10 @@
 $(document).ready(function() {
 
-   
+    // Efecto de Fundido
     $('section').fadeIn(2000);
     $('.card').fadeIn(2000);
+
+    // ===== VALIDACIÓN FORMULARIO CLIENTE (SIN AJAX) =====
     $("#formCliente").validate({
         rules: {
             nombre: {
@@ -36,9 +38,11 @@ $(document).ready(function() {
                 maxlength: "El teléfono no debe exceder los 10 dígitos"
             }
         }
+        // No hay 'submitHandler'. El formulario se enviará de forma normal
+        // si la validación es exitosa.
     });
 
-    // Validación para el formulario de Productos
+    // ===== VALIDACIÓN FORMULARIO PRODUCTO =====
     $("#formProducto").validate({
         rules: {
             nombre_prod: {

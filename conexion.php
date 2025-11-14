@@ -1,30 +1,36 @@
 <?php
-$host = "localhost";
-$usuario = "root";
-$password = "";
-$base = "tienda";
+class Conexion {
+    private static $instancia = null;
+    private $conn;
 
-// 1. Lista de puertos a intentar, en orden de prioridad
-$puertos = [3307, 3306]; 
+    private $host = "localhost";
+    private $usuario = "root";
+    private $password = "";
+    private $base = "tienda";
 
-$conn = null; // 2. Variable para guardar la conexión exitosa
+    // Constructor privado
+    private function __construct() {
+        $this->conn = new mysqli($this->host, $this->usuario, $this->password, $this->base);
 
-// 3. Recorremos la lista de puertos
-foreach ($puertos as $puerto) {
-    // El @ suprime el warning de conexión fallida para manejarlo nosotros
-    $conexionTemporal = @new mysqli($host, $usuario, $password, $base, $puerto);
-
-    // 4. Si la conexión tuvo éxito...
-    if (!$conexionTemporal->connect_error) {
-        $conn = $conexionTemporal; // ...guardamos la conexión...
-        break; // ...y salimos del bucle.
+        if ($this->conn->connect_error) {
+            die("Error de conexión: (" . $this->conn->connect_errno . ") " . $this->conn->connect_error);
+        }
+        $this->conn->set_charset("utf8");
     }
-}
 
-// 5. Después del bucle, revisamos si logramos conectarnos
-if ($conn === null) {
-    die ("Error de conexión: No se pudo conectar a la base de datos en ninguno de los puertos probados.");
-}
+    // Método estático para obtener la instancia
+    public static function obtenerInstancia() {
+        if (self::$instancia == null) {
+            self::$instancia = new self();
+        }
+        return self::$instancia;
+    }
 
-// echo "Conexión exitosa en el puerto: " . $conn->port;
+    // Método para obtener la conexión (objeto mysqli)
+    public function obtenerConexion() {
+        return $this->conn;
+    }
+
+    private function __clone() { }
+}
 ?>
