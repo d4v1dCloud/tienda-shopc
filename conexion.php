@@ -5,7 +5,7 @@ $password = "";
 $base = "tienda";
 
 // 1. Lista de puertos a intentar, en orden de prioridad
-$puertos = [3307, 3306]; 
+$puertos = [3306]; 
 
 $conn = null; // 2. Variable para guardar la conexión exitosa
 
