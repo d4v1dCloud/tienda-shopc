@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Mi Tienda de Computadoras</title>
-    <link rel="stylesheet" href="https://d4v1dcloud.github.io/tienda-shopc/estilos.css">
-    
+    <link rel="stylesheet" href="style_profesional.css?v=1.0">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 </head>
 <body>
-    <header>
+  <header>
         <h1>Bienvenido a ShoPC</h1>
-        <a href="alta.php" class="btn-admin">Panel de Altas</a>
+        
+        <div>
+            <a href="productos.php" class="btn-admin">Ver Productos</a>
+            <a href="alta.php" class="btn-admin">Panel de Altas</a>
+        </div>
+
     </header>
 
     <section>

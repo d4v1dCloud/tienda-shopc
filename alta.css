@@ -168,3 +168,18 @@ form input:focus, form textarea:focus {
 .card:hover {
     background-color: #fffacd;
 }
+.btn-modificar {
+    display: inline-block; /* Para que respete el padding */
+    background: #007bff; /* Azul (diferente del rojo de eliminar) */
+    color: white;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    margin-right: 10px; /* Espacio para separarlo del botón de eliminar */
+    margin-bottom: 5px; /* Espacio por si está encima */
+}
+.btn-modificar:hover {
+    background: #0056b3;
+}
