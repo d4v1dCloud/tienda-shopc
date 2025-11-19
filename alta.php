@@ -135,8 +135,23 @@ $resultadoUsuarios = $conn->query("SELECT id, username, rol FROM usuarios");
         ?>
     </section>
 
-    <footer>
-        <p>© 2025 ShoPC - Panel de Gestión</p>
+  <footer>
+        <p>© 2025 ShoPC - Todos los derechos reservados</p>
+        <p>
+            <a href="https://jigsaw.w3.org/css-validator/check/referer">
+                <img style="border:0;width:88px;height:31px"
+                    src="https://jigsaw.w3.org/css-validator/images/vcss-blue"
+                    alt="¡CSS Válido!" />
+            </a>
+        </p>
+        <p>
+            <a href="https://validator.w3.org/nu/#textarea">
+                <img style="border:0;width:88px;height:31px"
+                    src="https://www.w3.org/Icons/valid-html401"
+                    alt="¡HTML Válido!" />
+            </a>
+        </p>
+
     </footer>
 
     <script src="script.js?v=2.0"></script>

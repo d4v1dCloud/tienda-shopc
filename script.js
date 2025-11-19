@@ -51,8 +51,7 @@ $(document).ready(function() {
                         // 4. Limpiamos el formulario
                         $('#formProducto')[0].reset();
 
-                        // 5. Mostrar alerta flotante (opcional) o un alert simple
-                        alert("¡Producto guardado correctamente!");
+                       
                     } else {
                         alert("Hubo un error al guardar el producto.");
                     }
