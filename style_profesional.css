@@ -13,7 +13,7 @@ body {
     
     /* === AQUÍ ESTÁ EL CAMBIO === */
     /* Este es el nuevo fondo basado en el azul del botón */
-    background: linear-gradient(to bottom, #eaf6fb, #3f92c9); /* Tonos de azul muy claros, derivados de #3498db */
+    background: linear-gradient(to bottom, #87d9fd, #3ba5eb); /* Tonos de azul muy claros, derivados de #3498db */
     
     color: #343a40;
     line-height: 1.6;
@@ -69,7 +69,7 @@ form button {
 
 .btn-admin:hover, .btn-home:hover, .btn-modificar:hover,
 form button:hover {
-    background: #18689d; /* Azul más oscuro */
+    background: #185897; /* Azul más oscuro */
     transform: translateY(-2px);
 }
 
@@ -82,15 +82,16 @@ form button:hover {
 
 /* --- PASO 5: Secciones y Tarjetas (.card) --- */
 section, .card {
-    /* Este es el fondo claro para las cajas (que ya tenías) */
+    /* Fondo claro para las cajas */
     background: linear-gradient(to bottom, #ffffff, #e6f2ff);
     
     padding: 25px;
     border-radius: 8px;
     margin-bottom: 25px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    
+    /* ¡IMPORTANTE! He eliminado la línea 'display: none;' aquí */
 }
-
 /* Mantenemos la lógica de fadeIn de tu script.js */
 section, .card {
     display: none;

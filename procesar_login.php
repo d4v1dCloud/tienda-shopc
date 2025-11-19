@@ -1,9 +1,5 @@
 <?php
-// 1. Incluimos la conexión
 include 'conexion.php';
-
-// 2. Iniciamos la sesión
-// ¡Esta línea es ESENCIAL para que $_SESSION funcione!
 session_start();
 
 if (isset($_POST['login'])) {
@@ -12,45 +8,63 @@ if (isset($_POST['login'])) {
     $conn = $instanciaDB->obtenerConexion();
 
     $username = $_POST['username'];
-    $password_plana = $_POST['password']; // La que escribe el usuario
+    $password_plana = $_POST['password'];
+    // Recibimos de qué puerta viene (admin o cliente)
+    $origen = $_POST['origen']; 
 
-    // 3. Buscamos al usuario en la BD
-    $stmt = $conn->prepare("SELECT id, username, password FROM usuarios WHERE username = ?");
+    $stmt = $conn->prepare("SELECT id, username, password, rol FROM usuarios WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $resultado = $stmt->get_result();
 
     if ($resultado->num_rows == 1) {
-        // --- Usuario encontrado ---
         $usuario = $resultado->fetch_assoc();
-        $password_cifrada_db = $usuario['password']; // La que está en la BD
+        
+        if (password_verify($password_plana, $usuario['password'])) {
+            
+            // --- VALIDACIÓN DE ROLES SEGÚN LA PUERTA ---
 
-        // 4. ¡LA MAGIA! Verificamos la contraseña plana contra la cifrada
-        if (password_verify($password_plana, $password_cifrada_db)) {
+            // CASO 1: Intentan entrar por LOGIN.PHP (Puerta Admin)
+            if ($origen == 'admin') {
+                if ($usuario['rol'] == 'admin') {
+                    // Es admin y está en la puerta correcta
+                    $_SESSION['usuario_id'] = $usuario['id'];
+                    $_SESSION['usuario_username'] = $usuario['username'];
+                    $_SESSION['usuario_rol'] = $usuario['rol'];
+                    header("Location: alta.php");
+                    exit;
+                } else {
+                    // Es usuario normal intentando entrar a Admin -> DENEGADO
+                    header("Location: login.php?error=permisos");
+                    exit;
+                }
+            }
 
-            // --- ¡Contraseña CORRECTA! ---
-            // 5. Guardamos los datos en la sesión
-            $_SESSION['usuario_id'] = $usuario['id'];
-            $_SESSION['usuario_username'] = $usuario['username'];
-
-            // 6. Redirigimos al panel de alta
-            header("Location: alta.php");
-            exit; // Importante salir después de una redirección
+            // CASO 2: Intentan entrar por LOGIN_CLIENTE.PHP (Puerta Catálogo)
+            if ($origen == 'cliente') {
+                // Aquí dejamos pasar a TODOS (admins y usuarios)
+                $_SESSION['usuario_id'] = $usuario['id'];
+                $_SESSION['usuario_username'] = $usuario['username'];
+                $_SESSION['usuario_rol'] = $usuario['rol'];
+                header("Location: productos.php");
+                exit;
+            }
 
         } else {
-            // --- Contraseña INCORRECTA ---
-            header("Location: login.php?error=1");
+            // Contraseña incorrecta
+            $destino = ($origen == 'admin') ? "login.php" : "login_cliente.php";
+            header("Location: $destino?error=datos");
             exit;
         }
-
     } else {
-        // --- Usuario NO encontrado ---
-        header("Location: login.php?error=1");
+        // Usuario no encontrado
+        $destino = ($origen == 'admin') ? "login.php" : "login_cliente.php";
+        header("Location: $destino?error=datos");
         exit;
     }
 
 } else {
-    header("Location: login.php");
+    header("Location: index.php");
     exit;
 }
 ?>

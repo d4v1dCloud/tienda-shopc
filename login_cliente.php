@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Acceso Administrativo - ShoPC</title>
+    <title>Acceso al Catálogo - ShoPC</title>
     <link rel="stylesheet" href="style_profesional.css?v=1.0">
 </head>
 <body> 
     <header>
-        <h1>Panel Administrativo</h1>
+        <h1>Acceso a Productos</h1>
         <nav>
             <a href="index.php" class="btn-home">Volver a Inicio</a>
         </nav>
@@ -17,28 +17,27 @@
     if (isset($_GET['error'])) {
         echo "<div class='alerta error' style='max-width: 500px; margin: 20px auto;'>";
         if ($_GET['error'] == 'datos') echo "Usuario o contraseña incorrectos.";
-        if ($_GET['error'] == 'permisos') echo "ACCESO DENEGADO: Esta zona es solo para Administradores.";
         echo "</div>";
     }
     ?>
 
     <section style="max-width: 500px; margin: 0 auto;">
-        <h2>Solo Personal Autorizado</h2>
-        <form id="formLoginAdmin" method="POST" action="procesar_login.php">
+        <h2>Iniciar Sesión (Clientes)</h2>
+        <form id="formLoginCliente" method="POST" action="procesar_login.php">
+            
+            <input type="hidden" name="origen" value="cliente">
 
-            <input type="hidden" name="origen" value="admin">
-
-            <label>Usuario Admin:</label>
-            <input type="text" name="username" placeholder="Usuario administrador" required>
+            <label>Usuario:</label>
+            <input type="text" name="username" placeholder="Tu usuario" required>
 
             <label>Contraseña:</label>
-            <input type="password" name="password" placeholder="Contraseña" required>
+            <input type="password" name="password" placeholder="Tu contraseña" required>
 
-            <button type="submit" name="login">Entrar al Panel</button>
+            <button type="submit" name="login">Ver Catálogo</button>
         </form>
-
+        
         <div style="text-align: center; margin-top: 15px;">
-            <p>¿Eres cliente? <a href="login_cliente.php">Entra al catálogo aquí</a></p>
+            <p>¿Eres administrador? <a href="login.php">Entra por aquí</a></p>
         </div>
     </section>
     

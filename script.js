@@ -1,72 +1,70 @@
 $(document).ready(function() {
 
-    // Efecto de Fundido
+    // Efecto de Fundido inicial
     $('section').fadeIn(2000);
     $('.card').fadeIn(2000);
 
-    // ===== VALIDACIÓN FORMULARIO CLIENTE (SIN AJAX) =====
-    $("#formCliente").validate({
-        rules: {
-            nombre: {
-                required: true,
-                minlength: 3
-            },
-            email: {
-                required: true,
-                email: true // Regla específica para formato de email
-            },
-            telefono: {
-                required: true,
-                digits: true, // Solo permite dígitos
-                minlength: 7,
-                maxlength: 10
-            }
-        },
-        messages: {
-            nombre: {
-                required: "Por favor, ingresa tu nombre completo",
-                minlength: "Tu nombre debe tener al menos 3 caracteres"
-            },
-            email: {
-                required: "Por favor, ingresa tu correo electrónico",
-                email: "Por favor, ingresa un formato de correo válido"
-            },
-            telefono: {
-                required: "Por favor, ingresa tu número de teléfono",
-                digits: "Ingresa solo números",
-                minlength: "El teléfono debe tener al menos 7 dígitos",
-                maxlength: "El teléfono no debe exceder los 10 dígitos"
-            }
-        }
-        // No hay 'submitHandler'. El formulario se enviará de forma normal
-        // si la validación es exitosa.
-    });
-
-    // ===== VALIDACIÓN FORMULARIO PRODUCTO =====
+    // ===== VALIDACIÓN FORMULARIO PRODUCTO CON AJAX =====
     $("#formProducto").validate({
         rules: {
-            nombre_prod: {
-                required: true
-            },
-            descripcion: {
-                required: false // La descripción es opcional
-            },
-            precio: {
-                required: true,
-                number: true, // Debe ser un número
-                min: 0.01     // Precio debe ser positivo
-            }
+            nombre_prod: { required: true },
+            descripcion: { required: false },
+            precio: { required: true, number: true, min: 0.01 }
         },
         messages: {
-            nombre_prod: {
-                required: "Por favor, ingresa el nombre del producto"
-            },
-            precio: {
+            nombre_prod: { required: "Por favor, ingresa el nombre del producto" },
+            precio: { 
                 required: "Por favor, ingresa un precio",
-                number: "Ingresa un valor numérico (ej. 1500.50)",
+                number: "Ingresa un valor numérico válido",
                 min: "El precio debe ser mayor a 0"
             }
+        },
+        // ESTA ES LA PARTE NUEVA: submitHandler
+        submitHandler: function(form) {
+            // Serializamos los datos del formulario y agregamos el name del botón
+            var datos = $(form).serialize() + "&guardar_producto=true";
+
+            $.ajax({
+                url: 'procesar_alta.php',
+                type: 'POST',
+                data: datos,
+                dataType: 'json', // Esperamos JSON de vuelta
+                success: function(respuesta) {
+                    
+                    if (respuesta.status === 'ok') {
+                        // 1. Creamos la tarjeta HTML
+                        var nuevaCard = `
+                            <div class='card' style='display:none; background-color: #d1e7dd;'>
+                                <h3>${respuesta.nombre}</h3>
+                                <p>${respuesta.descripcion}</p>
+                                <p class='precio'>$${respuesta.precio}</p>
+                            </div>
+                        `;
+
+                        // 2. Si existía el mensaje de "No hay productos", lo quitamos
+                        $('#msg-vacio').remove();
+
+                        // 3. Agregamos la tarjeta al principio de la lista y hacemos efecto fade
+                        $('#contenedor-productos').prepend(nuevaCard);
+                        $('#contenedor-productos .card:first').fadeIn(1000);
+
+                        // 4. Limpiamos el formulario
+                        $('#formProducto')[0].reset();
+
+                        // 5. Mostrar alerta flotante (opcional) o un alert simple
+                        alert("¡Producto guardado correctamente!");
+                    } else {
+                        alert("Hubo un error al guardar el producto.");
+                    }
+                },
+                error: function() {
+                    alert("Error de conexión con el servidor.");
+                }
+            });
+            
+            return false; // Evita que el formulario se envíe de forma normal
         }
     });
 
+    // (Si tenías validación de clientes u otros scripts, van aquí abajo)
 });

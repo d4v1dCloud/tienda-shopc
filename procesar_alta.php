@@ -1,36 +1,15 @@
 <?php
-// 1. Incluimos la clase
 include 'conexion.php'; 
 
-// 2. Obtenemos la conexión al inicio
 $instanciaDB = Conexion::obtenerInstancia();
 $conn = $instanciaDB->obtenerConexion();
 
-// 3. Verificamos qué formulario se envió
-
-// --- PROCESAR ALTA DE CLIENTE (Versión SIN AJAX) ---
-if (isset($_POST['guardar_cliente'])) {
+// --- PROCESAR ALTA DE PRODUCTO (Vía AJAX) ---
+if (isset($_POST['guardar_producto'])) {
     
-    $nombre = $_POST['nombre'];
-    $email = $_POST['email'];
-    $telefono = $_POST['telefono'];
+    // Indicamos que la respuesta será JSON
+    header('Content-Type: application/json');
 
-    $stmt = $conn->prepare("INSERT INTO clientes (nombre, email, telefono) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $nombre, $email, $telefono);
-
-    // 3. Ejecutamos y REDIRIGIMOS
-    if ($stmt->execute()) {
-        header("Location: alta.php?status=ok_cliente");
-    } else {
-        header("Location: alta.php?status=err_cliente");
-    }
-    
-    $stmt->close();
-} 
-
-// --- PROCESAR ALTA DE PRODUCTO ---
-elseif (isset($_POST['guardar_producto'])) {
-    
     $nombre_prod = $_POST['nombre_prod'];
     $descripcion = $_POST['descripcion'];
     $precio = $_POST['precio'];
@@ -39,16 +18,24 @@ elseif (isset($_POST['guardar_producto'])) {
     $stmt->bind_param("ssd", $nombre_prod, $descripcion, $precio);
 
     if ($stmt->execute()) {
-        header("Location: alta.php?status=ok_prod");
+        // Devolvemos éxito y los datos para pintarlos en JS
+        echo json_encode([
+            'status' => 'ok',
+            'nombre' => $nombre_prod,
+            'descripcion' => $descripcion,
+            'precio' => number_format($precio, 2)
+        ]);
     } else {
-        header("Location: alta.php?status=err_prod");
+        echo json_encode(['status' => 'error', 'msg' => 'Error en BD']);
     }
 
     $stmt->close();
+    exit; // Importante salir para no imprimir nada más
 } 
 
-// Si alguien intenta acceder a este archivo directamente
+// --- (Si hubiera otros formularios normales, irían aquí) ---
 else {
+    // Si alguien entra directo
     header("Location: alta.php");
 }
 ?>
